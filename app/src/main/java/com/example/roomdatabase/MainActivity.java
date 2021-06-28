@@ -1,13 +1,15 @@
 package com.example.roomdatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Database;
-import androidx.room.Room;
+//import androidx.room.Database;
+//import androidx.room.Room;
 
+//import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
+//import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,14 +17,28 @@ import android.widget.Toast;
 
 import com.example.roomdatabase.EntityClass.UserModel;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText name, phoneno, address;
     Button save, getData, save2;
-    public static double b=0;
+
     TextView dispamt;
-    public static final String  SHARED_PREF = "shared";
+    public static final String SHARED_PREF = "shared";
     public static final String TEXT = "text";
+    public static final String NUMBER = "number";
+    public static float b=0;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Context context = getApplicationContext();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
+        if(sharedPreferences.contains(TEXT)) {
+            dispamt.setText(sharedPreferences.getString(TEXT, ""));
+        }
+        b = sharedPreferences.getFloat(NUMBER,0);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,54 +51,48 @@ public class MainActivity extends AppCompatActivity {
         save2 = findViewById(R.id.btn_save2);
         dispamt = findViewById(R.id.displayamount);
 
-        save2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double amount = Integer.parseInt(name.getText().toString());
-                b =  b + amount;
-                dispamt.setText(""+ String.format("%.2f", b ));
+        save2.setOnClickListener(v -> {
+            float amount = Integer.parseInt(name.getText().toString());
+            b =  b + amount ;
+            dispamt.setText(String.format(Locale.getDefault(),"%.2f", b ));
+            Context context = getApplicationContext();
+            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.putString(TEXT,dispamt.getText().toString());
+            editor.putFloat(NUMBER,b);
+            editor.apply();
 
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(TEXT, dispamt.getText().toString());
-                editor.apply();
-
-                Toast.makeText(MainActivity.this,"Amount Credited",Toast.LENGTH_SHORT).show();
-                saveData();
-            }
+            Toast.makeText(MainActivity.this,"Amount Credited",Toast.LENGTH_SHORT).show();
+            saveData();
         });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                double amount2 = Integer.parseInt(name.getText().toString());
-                b = b - amount2;
-                dispamt.setText(""+ String.format("%.2f", b ));
+        save.setOnClickListener(view -> {
+            float amount2 = Integer.parseInt(name.getText().toString());
+            //float temp = Float.parseFloat(NUMBER);
+            b = b  - amount2 ;
+            dispamt.setText(String.format(Locale.getDefault(),"%.2f", b ));
+            Context context = getApplicationContext();
+            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.putString(TEXT,dispamt.getText().toString());
+            editor.putFloat(NUMBER,b);
+            editor.apply();
 
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(TEXT, dispamt.getText().toString());
-                editor.apply();
-
-                Toast.makeText(MainActivity.this,"Amount Debited",Toast.LENGTH_SHORT).show();
-                saveData();
-            }
+            Toast.makeText(MainActivity.this,"Amount Debited",Toast.LENGTH_SHORT).show();
+            saveData();
         });
-        getData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), GetData.class));
-            }
-        });
+        getData.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), GetData.class)));
 
-        update();
+        //update();
 
     }
 
-    private void update() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+    /*private void update() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
         String text = sharedPreferences.getString(TEXT, "");
         dispamt.setText(text);
-    }
+    }*/
 
     private void saveData() {
         String name_txt = name.getText().toString().trim();
