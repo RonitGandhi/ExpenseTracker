@@ -42,18 +42,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.name.setText(list.get(position).getName());
         holder.address.setText(list.get(position).getAddress());
 
-        holder.update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, UpdateData.class);
-                intent.putExtra("id", String.valueOf(list.get(position).getKey()));
-                intent.putExtra("name", String.valueOf(list.get(position).getName()));
-                intent.putExtra("address", String.valueOf(list.get(position).getAddress()));
-                intent.putExtra("phoneno", String.valueOf(list.get(position).getPhoneno()));
-                context.startActivity(intent);
-
-            }
-        });
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,9 +57,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         return list.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, address, phone;
-        Button update, delete;
+        Button  delete;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,7 +68,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             phone = itemView.findViewById(R.id.phone); //reason
             address = itemView.findViewById(R.id.address); // date
             name = itemView.findViewById(R.id.name); //amount
-            update = itemView.findViewById(R.id.updateId);
+
+
             delete = itemView.findViewById(R.id.deleteId);
         }
     }

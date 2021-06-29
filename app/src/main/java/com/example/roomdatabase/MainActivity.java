@@ -19,6 +19,8 @@ import com.example.roomdatabase.EntityClass.UserModel;
 
 import java.util.Locale;
 
+
+
 public class MainActivity extends AppCompatActivity {
 
     EditText name, phoneno, address;
@@ -51,36 +53,50 @@ public class MainActivity extends AppCompatActivity {
         save2 = findViewById(R.id.btn_save2);
         dispamt = findViewById(R.id.displayamount);
 
-        save2.setOnClickListener(v -> {
-            float amount = Integer.parseInt(name.getText().toString());
-            b =  b + amount ;
-            dispamt.setText(String.format(Locale.getDefault(),"%.2f", b ));
-            Context context = getApplicationContext();
-            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.putString(TEXT,dispamt.getText().toString());
-            editor.putFloat(NUMBER,b);
-            editor.apply();
 
-            Toast.makeText(MainActivity.this,"Amount Credited",Toast.LENGTH_SHORT).show();
-            saveData();
+        save2.setOnClickListener(v -> {
+            if(name.getText().toString().isEmpty() && phoneno.getText().toString().isEmpty()
+                    && address.getText().toString().isEmpty()){
+                Toast.makeText(this, "Please Enter All fields", Toast.LENGTH_SHORT).show();
+            } else {
+                float amount = Integer.parseInt(name.getText().toString());
+                b = b + amount;
+                dispamt.setText(String.format(Locale.getDefault(), "%.2f", b));
+                Context context = getApplicationContext();
+                SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.putString(TEXT, dispamt.getText().toString());
+                editor.putFloat(NUMBER, b);
+                editor.apply();
+
+                Toast.makeText(MainActivity.this, "Amount Credited", Toast.LENGTH_SHORT).show();
+                saveData();
+            }
+
         });
         save.setOnClickListener(view -> {
-            float amount2 = Integer.parseInt(name.getText().toString());
-            //float temp = Float.parseFloat(NUMBER);
-            b = b  - amount2 ;
-            dispamt.setText(String.format(Locale.getDefault(),"%.2f", b ));
-            Context context = getApplicationContext();
-            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.putString(TEXT,dispamt.getText().toString());
-            editor.putFloat(NUMBER,b);
-            editor.apply();
 
-            Toast.makeText(MainActivity.this,"Amount Debited",Toast.LENGTH_SHORT).show();
-            saveData();
+                    if(name.getText().toString().isEmpty() && phoneno.getText().toString().isEmpty()
+                            && address.getText().toString().isEmpty()){
+                        Toast.makeText(this, "Please Enter All fields", Toast.LENGTH_SHORT).show();
+                    } else {
+                        float amount2 = Integer.parseInt(name.getText().toString());
+                        //float temp = Float.parseFloat(NUMBER);
+                        b = b - amount2;
+                        dispamt.setText(String.format(Locale.getDefault(), "%.2f", b));
+                        Context context = getApplicationContext();
+                        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.putString(TEXT, dispamt.getText().toString());
+                        editor.putFloat(NUMBER, b);
+                        editor.apply();
+
+                        Toast.makeText(MainActivity.this, "Amount Debited", Toast.LENGTH_SHORT).show();
+                        saveData();
+                    }
+
         });
         getData.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), GetData.class)));
 
