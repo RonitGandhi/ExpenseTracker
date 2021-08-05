@@ -35,7 +35,7 @@ public class SpalshScreen extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SpalshScreen.this, Dashboard.class));
+                startActivity(new Intent(SpalshScreen.this, MainActivity.class));
             }
         }, 6000);
 

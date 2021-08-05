@@ -100,15 +100,10 @@ public class MainActivity extends AppCompatActivity {
         });
         getData.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), GetData.class)));
 
-        //update();
+
 
     }
 
-    /*private void update() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
-        String text = sharedPreferences.getString(TEXT, "");
-        dispamt.setText(text);
-    }*/
 
     private void saveData() {
         String name_txt = name.getText().toString().trim();

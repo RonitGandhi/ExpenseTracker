@@ -5,14 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/dash"
     tools:context=".MainActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Current Balance"
         android:textSize="20dp"
+        android:textStyle="bold"
         android:layout_marginLeft="20sp"
-        android:textColor="@android:color/black"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#A6FFFFFF"
         android:layout_marginTop="40dp"/>
 
 
@@ -25,7 +28,7 @@
         android:layout_marginRight="30dp"
         android:background="@drawable/networth_text"
         android:textAlignment="center"
-        android:textColor="@android:color/white"
+        android:textColor="#6BFFFFFF"
         android:textSize="30dp" />
 
     <EditText
@@ -38,8 +41,10 @@
         android:background="@drawable/edittext_background"
         android:drawableRight="@drawable/ic_baseline_money_24"
         android:hint="Amount"
+        android:textColorHint="#65FFFFFF"
         android:padding="20sp"
         android:singleLine="true"
+        android:textColor="@android:color/white"
         android:textSize="15dp" />
 
     <EditText
@@ -51,9 +56,11 @@
         android:layout_marginTop="30sp"
         android:layout_marginRight="20sp"
         android:background="@drawable/edittext_background"
+        android:textColorHint="#65FFFFFF"
         android:hint="Mention Credit or Debit, with the reason"
         android:textSize="15dp"
         android:padding="20sp"
+        android:textColor="@android:color/white"
         android:singleLine="true" />
 
     <EditText
@@ -63,6 +70,8 @@
         android:layout_marginTop="30sp"
         android:id="@+id/address"
         android:layout_marginRight="20sp"
+        android:textColor="@android:color/white"
+        android:textColorHint="#65FFFFFF"
         android:drawableRight="@drawable/ic_baseline_date_range_24"
         android:background="@drawable/edittext_background"
         android:hint="Date"
@@ -83,10 +92,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30sp"
+        android:textColorHint="#65FFFFFF"
         android:background="@drawable/button_debit"
         android:text="Debit"
         android:textAlignment="center"
-        android:textColor="#fff"
+        android:textColor="#050505"
         android:textSize="16sp" />
 
     <Button
@@ -96,10 +106,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="30sp"
+        android:textColorHint="#65FFFFFF"
         android:background="@drawable/button_credit"
         android:text="credit"
         android:textAlignment="center"
-        android:textColor="#fff"
+        android:textColor="#000000"
         android:textSize="16sp" />
 </LinearLayout>
 
@@ -113,8 +124,10 @@
         android:layout_marginLeft="20dp"
         android:paddingHorizontal="30sp"
         android:background="@drawable/transaction_button"
-        android:text="Transaction History"
-        android:textColor="#0B0B0B"
-        android:textSize="16sp" />
+        android:alpha="1"
+        android:text="Check Transaction History"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
 </LinearLayout>

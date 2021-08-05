@@ -5,58 +5,62 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
-
     <androidx.cardview.widget.CardView
-        android:layout_width="390dp"
-        app:cardCornerRadius="20dp"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_height="130dp">
-
+        app:cardBackgroundColor="#1CEBE4"
+        android:layout_height="70dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
         <TextView
             android:id="@+id/name"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_width="200dp"
-            android:textSize="20dp"
+            android:layout_width="100dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:background="@android:color/white"
-            android:layout_height="30dp"
-            android:layout_toLeftOf="@+id/phone" />
-
-      <TextView
-          android:layout_width="100dp"
-          android:layout_height="30dp"
-          android:id="@+id/address"
-          android:textSize="25dp"
-          android:layout_marginTop="10dp"
-          android:layout_marginLeft="270dp"
-          android:background="@android:color/white"
-          android:textColor="@android:color/black"/>
-
+            android:background="#1CEBE4"
+            android:layout_height="40dp" />
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="110dp"
+                android:layout_gravity="center"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#000000" />
         <TextView
-            android:id="@+id/phone"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:textSize="30dp"
-            android:textStyle="italic"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="50dp"/>
+          android:layout_width="100dp"
+          android:layout_height="40dp"
+          android:id="@+id/address"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+          android:layout_marginStart="12dp"
+          android:layout_marginTop="10dp"
+          android:background="#1CEBE4"
+          android:textColor="#000000"/>
 
         <Button
             android:id="@+id/deleteId"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_gravity="center"
             android:background="@drawable/ic_baseline_delete_24"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="350dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginStart="10dp"/>
 
-
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
